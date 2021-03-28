@@ -4,7 +4,11 @@ module.exports = {
   url: process.env.DATABASE_URL,
   synchronize: false,
   logging: true,
-  extra: {ssl: true , rejectUnauthorized: false },
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    },
   entities: [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
