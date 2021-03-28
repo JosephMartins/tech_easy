@@ -2,9 +2,7 @@
 module.exports = {
   type: "postgres",
   url: process.env.DATABASE_URL,
-  dialectOptions: {
-    ssl: { rejectUnauthorized: false },
-  },
+  ssl: true,
   entities: [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
