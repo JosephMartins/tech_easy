@@ -28,6 +28,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 });
 
-app.listen(5001, () => {
-  console.log('🚀 Server started on port 5001!!');
+app.listen(3000, () => {
+  console.log('🚀 Server started on port 3000!!');
 });
