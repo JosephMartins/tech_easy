@@ -2,6 +2,8 @@
 module.exports = {
   type: "postgres",
   url: process.env.DATABASE_URL,
+  synchronize: false,
+  logging: true,
   entities: [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
