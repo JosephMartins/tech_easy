@@ -6,9 +6,9 @@ module.exports = {
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
   "migrations": [
-    "./src/shared/infra/typeorm/migrations/*.js"
+    "./dist/shared/infra/typeorm/migrations/*.js"
   ],
   "cli": {
-  "migrationsDir": "./dist/shared/infra/typeorm/migrations"
+  "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 }
