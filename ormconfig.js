@@ -9,6 +9,7 @@ module.exports = {
     ssl: {
       rejectUnauthorized: false
     },
+  },
   entities: [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
