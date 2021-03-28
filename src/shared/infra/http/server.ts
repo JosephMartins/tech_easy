@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-
+import dotenv from 'dotenv';
 import express, { Response, Request, NextFunction } from 'express';
 import 'express-async-errors';
 
@@ -7,6 +7,8 @@ import AppError from '../../errors/AppError';
 import routes from './routes';
 
 import '../typeorm';
+
+dotenv.config();
 
 const app = express();
 
@@ -26,6 +28,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 });
 
-app.listen(5000, () => {
-  console.log('🚀 Server started on port 5000!!');
+app.listen(5001, () => {
+  console.log('🚀 Server started on port 5001!!');
 });
