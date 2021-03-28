@@ -4,7 +4,7 @@ module.exports = {
   url: process.env.DATABASE_URL,
   synchronize: false,
   logging: true,
-  extra: { ssl: true, rejectUnauthorized: false },
+  extra: process.env.TYPEORM_DRIVER_EXTRA,
   entities: [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
