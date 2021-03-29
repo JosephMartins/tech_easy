@@ -3,11 +3,8 @@ import { getCustomRepository, Like } from 'typeorm';
 
 import ToolsRepository from '@modules/tools/repositories/ToolsRepository';
 import CreateToolsService from '@modules/tools/services/CreateToolsService';
-// import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const toolsRouter = Router();
-
-// toolsRouter.use(ensureAuthenticated);
 
 toolsRouter.get('/', async (request, response) => {
   const toolsRepository = getCustomRepository(ToolsRepository);
@@ -36,7 +33,6 @@ toolsRouter.post('/', async (request, response) => {
     description,
     tags: tagsConvertedToString,
   });
-  console.log(tool);
 
   return response.json(tool);
 });
@@ -52,19 +48,21 @@ toolsRouter.get('/tools', async (request, response) => {
   return response.json(tools);
 });
 
-toolsRouter.delete('/tools/:id', async (request, response) => {
-  const { id } = request.params;
+toolsRouter.delete(
+  '/tools/:id',
 
-  const toolsRepository = getCustomRepository(ToolsRepository);
-  console.log('oi');
+  async (request, response) => {
+    const { id } = request.params;
 
-  const toolRemove = await toolsRepository.findOne(id);
+    const toolsRepository = getCustomRepository(ToolsRepository);
+    const toolRemove = await toolsRepository.findOne(id);
 
-  if (toolRemove) {
-    await toolsRepository.remove(toolRemove);
-    return response.json(`O item com id: ${id} foi deletado com sucesso`);
-  }
-  return response.json(`Item não encontrado`);
-});
+    if (toolRemove) {
+      await toolsRepository.remove(toolRemove);
+      return response.json(`O item com id: ${id} foi deletado com sucesso`);
+    }
+    return response.json(`Item não encontrado`);
+  },
+);
 
 export default toolsRouter;

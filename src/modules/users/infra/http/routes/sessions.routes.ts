@@ -6,7 +6,6 @@ const sessionsRouter = Router();
 
 sessionsRouter.post('/', async (request, response) => {
   const { email, password } = request.body;
-
   const createSessionService = new CreateSessionService();
 
   const { user, token } = await createSessionService.execute({
