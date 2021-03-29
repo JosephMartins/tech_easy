@@ -1,5 +1,21 @@
 
-module.exports = {
+
+const devConfig = {
+  type: "postgres",
+  url: process.env.DATABASE_URL,
+  entities: [
+    "./src/modules/**/infra/typeorm/entities/*.ts"
+  ],
+  migrations: [
+    "./src/shared/infra/typeorm/migrations/*.ts"
+  ],
+  cli: {
+  migrationsDir: "./src/shared/infra/typeorm/migrations"
+  }
+}
+
+
+const prodConfig = {
   type: "postgres",
   url: process.env.DATABASE_URL,
   ssl: true,
@@ -18,3 +34,5 @@ module.exports = {
   migrationsDir: "./src/shared/infra/typeorm/migrations"
   }
 }
+
+module.exports = process.env.NODE_ENV === 'development' ? devConfig : prodConfig;
