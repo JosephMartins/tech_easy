@@ -10,6 +10,7 @@ interface Request {
   link: string;
   description: string;
   tags: string;
+  user_id: string;
 }
 
 class CreateToolsService {
@@ -18,11 +19,11 @@ class CreateToolsService {
     link,
     description,
     tags,
+    user_id,
   }: Request): Promise<Tools> {
     const toolsRepository = getCustomRepository(ToolsRepository);
 
     const findToolRegistred = await toolsRepository.findByTitle(title);
-
     if (findToolRegistred) {
       throw new AppError('This tool is already registered', 401);
     }
@@ -32,6 +33,7 @@ class CreateToolsService {
       link,
       description,
       tags,
+      user_id,
     });
 
     await toolsRepository.save(tools);

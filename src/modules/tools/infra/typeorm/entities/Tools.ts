@@ -4,7 +4,11 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('tools')
 class Tools {
@@ -16,6 +20,16 @@ class Tools {
 
   @Column()
   link: string;
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({
+    name: 'user_id',
+    referencedColumnName: 'id',
+  })
+  user: User;
 
   @Column()
   description: string;

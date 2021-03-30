@@ -16,14 +16,14 @@ toolsRouter.get('/', async (request, response) => {
     description: tool.description,
     id: tool.id,
     tags: tool.tags.split(','),
+    user_id: tool.user_id,
   }));
 
   return response.json(toolsTagConvertedArray);
 });
 
 toolsRouter.post('/', async (request, response) => {
-  const { title, link, description, tags } = request.body;
-
+  const { title, link, description, tags, user_id } = request.body;
   const tagsConvertedToString = tags.toString();
   const createToolsService = new CreateToolsService();
 
@@ -32,6 +32,7 @@ toolsRouter.post('/', async (request, response) => {
     link,
     description,
     tags: tagsConvertedToString,
+    user_id,
   });
 
   return response.json(tool);
