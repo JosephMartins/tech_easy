@@ -23,15 +23,6 @@ let ToolsRepository = (_dec = (0, _typeorm.EntityRepository)(_Tools.default), _d
     return findTools || null;
   }
 
-  async convertTagsToArray(title) {
-    const findTools = await this.findOne({
-      where: {
-        title
-      }
-    });
-    return findTools || null;
-  }
-
 }) || _class);
 var _default = ToolsRepository;
 exports.default = _default;

@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/User';
+import User from '../../../../users/infra/typeorm/entities/User';
 
 @Entity('tools')
 class Tools {
@@ -27,7 +27,6 @@ class Tools {
   @ManyToOne(() => User)
   @JoinColumn({
     name: 'user_id',
-    referencedColumnName: 'id',
   })
   user: User;
 

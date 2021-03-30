@@ -15,9 +15,7 @@ var _CreateToolsService = _interopRequireDefault(require("../../../services/Crea
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-const toolsRouter = (0, _express.Router)(); // toolsRouter.use(ensureAuthenticated);
-
+const toolsRouter = (0, _express.Router)();
 toolsRouter.get('/', async (request, response) => {
   const toolsRepository = (0, _typeorm.getCustomRepository)(_ToolsRepository.default);
   const tools = await toolsRepository.find();
@@ -26,7 +24,8 @@ toolsRouter.get('/', async (request, response) => {
     link: tool.link,
     description: tool.description,
     id: tool.id,
-    tags: tool.tags.split(',')
+    tags: tool.tags.split(','),
+    user_id: tool.user_id
   }));
   return response.json(toolsTagConvertedArray);
 });
@@ -35,7 +34,8 @@ toolsRouter.post('/', async (request, response) => {
     title,
     link,
     description,
-    tags
+    tags,
+    user_id
   } = request.body;
   const tagsConvertedToString = tags.toString();
   const createToolsService = new _CreateToolsService.default();
@@ -43,9 +43,9 @@ toolsRouter.post('/', async (request, response) => {
     title,
     link,
     description,
-    tags: tagsConvertedToString
+    tags: tagsConvertedToString,
+    user_id
   });
-  console.log(tool);
   return response.json(tool);
 });
 toolsRouter.get('/tools', async (request, response) => {
@@ -63,7 +63,6 @@ toolsRouter.delete('/tools/:id', async (request, response) => {
     id
   } = request.params;
   const toolsRepository = (0, _typeorm.getCustomRepository)(_ToolsRepository.default);
-  console.log('oi');
   const toolRemove = await toolsRepository.findOne(id);
 
   if (toolRemove) {

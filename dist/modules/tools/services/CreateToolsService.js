@@ -18,7 +18,8 @@ class CreateToolsService {
     title,
     link,
     description,
-    tags
+    tags,
+    user_id
   }) {
     const toolsRepository = (0, _typeorm.getCustomRepository)(_ToolsRepository.default);
     const findToolRegistred = await toolsRepository.findByTitle(title);
@@ -31,7 +32,8 @@ class CreateToolsService {
       title,
       link,
       description,
-      tags
+      tags,
+      user_id
     });
     await toolsRepository.save(tools);
     return tools;

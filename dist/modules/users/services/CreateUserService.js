@@ -17,7 +17,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class CreateUserService {
   async execute({
-    name,
     email,
     password
   }) {
@@ -34,7 +33,6 @@ class CreateUserService {
 
     const hashedPassword = await (0, _bcrypt.hash)(password, 8);
     const user = usersRepository.create({
-      name,
       email,
       password: hashedPassword
     });

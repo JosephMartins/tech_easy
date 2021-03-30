@@ -7,7 +7,11 @@ exports.default = void 0;
 
 var _typeorm = require("typeorm");
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+var _User = _interopRequireDefault(require("../../../../users/infra/typeorm/entities/User"));
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -15,7 +19,9 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
 function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
 
-let Tools = (_dec = (0, _typeorm.Entity)('tools'), _dec2 = (0, _typeorm.PrimaryGeneratedColumn)('uuid'), _dec3 = Reflect.metadata("design:type", String), _dec4 = (0, _typeorm.Column)(), _dec5 = Reflect.metadata("design:type", String), _dec6 = (0, _typeorm.Column)(), _dec7 = Reflect.metadata("design:type", String), _dec8 = (0, _typeorm.Column)(), _dec9 = Reflect.metadata("design:type", String), _dec10 = (0, _typeorm.Column)(), _dec11 = Reflect.metadata("design:type", String), _dec12 = (0, _typeorm.CreateDateColumn)(), _dec13 = Reflect.metadata("design:type", typeof Date === "undefined" ? Object : Date), _dec14 = (0, _typeorm.UpdateDateColumn)(), _dec15 = Reflect.metadata("design:type", typeof Date === "undefined" ? Object : Date), _dec(_class = (_class2 = class Tools {
+let Tools = (_dec = (0, _typeorm.Entity)('tools'), _dec2 = (0, _typeorm.PrimaryGeneratedColumn)('uuid'), _dec3 = Reflect.metadata("design:type", String), _dec4 = (0, _typeorm.Column)(), _dec5 = Reflect.metadata("design:type", String), _dec6 = (0, _typeorm.Column)(), _dec7 = Reflect.metadata("design:type", String), _dec8 = (0, _typeorm.Column)(), _dec9 = Reflect.metadata("design:type", String), _dec10 = (0, _typeorm.ManyToOne)(() => _User.default), _dec11 = (0, _typeorm.JoinColumn)({
+  name: 'user_id'
+}), _dec12 = Reflect.metadata("design:type", typeof _User.default === "undefined" ? Object : _User.default), _dec13 = (0, _typeorm.Column)(), _dec14 = Reflect.metadata("design:type", String), _dec15 = (0, _typeorm.Column)(), _dec16 = Reflect.metadata("design:type", String), _dec17 = (0, _typeorm.CreateDateColumn)(), _dec18 = Reflect.metadata("design:type", typeof Date === "undefined" ? Object : Date), _dec19 = (0, _typeorm.UpdateDateColumn)(), _dec20 = Reflect.metadata("design:type", typeof Date === "undefined" ? Object : Date), _dec(_class = (_class2 = class Tools {
   constructor() {
     _initializerDefineProperty(this, "id", _descriptor, this);
 
@@ -23,13 +29,17 @@ let Tools = (_dec = (0, _typeorm.Entity)('tools'), _dec2 = (0, _typeorm.PrimaryG
 
     _initializerDefineProperty(this, "link", _descriptor3, this);
 
-    _initializerDefineProperty(this, "description", _descriptor4, this);
+    _initializerDefineProperty(this, "user_id", _descriptor4, this);
 
-    _initializerDefineProperty(this, "tags", _descriptor5, this);
+    _initializerDefineProperty(this, "user", _descriptor5, this);
 
-    _initializerDefineProperty(this, "created_at", _descriptor6, this);
+    _initializerDefineProperty(this, "description", _descriptor6, this);
 
-    _initializerDefineProperty(this, "updated_at", _descriptor7, this);
+    _initializerDefineProperty(this, "tags", _descriptor7, this);
+
+    _initializerDefineProperty(this, "created_at", _descriptor8, this);
+
+    _initializerDefineProperty(this, "updated_at", _descriptor9, this);
   }
 
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "id", [_dec2, _dec3], {
@@ -47,22 +57,32 @@ let Tools = (_dec = (0, _typeorm.Entity)('tools'), _dec2 = (0, _typeorm.PrimaryG
   enumerable: true,
   writable: true,
   initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "description", [_dec8, _dec9], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "user_id", [_dec8, _dec9], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: null
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "tags", [_dec10, _dec11], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "user", [_dec10, _dec11, _dec12], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: null
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "created_at", [_dec12, _dec13], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "description", [_dec13, _dec14], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: null
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "updated_at", [_dec14, _dec15], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "tags", [_dec15, _dec16], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "created_at", [_dec17, _dec18], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "updated_at", [_dec19, _dec20], {
   configurable: true,
   enumerable: true,
   writable: true,
