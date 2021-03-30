@@ -9,7 +9,7 @@ const toolsRouter = Router();
 toolsRouter.get('/', async (request, response) => {
   const toolsRepository = getCustomRepository(ToolsRepository);
 
-  const tools = await toolsRepository.find();
+  const tools = await toolsRepository.find({ relations: ['user'] });
   const toolsTagConvertedArray = tools.map(tool => ({
     title: tool.title,
     link: tool.link,
@@ -17,6 +17,7 @@ toolsRouter.get('/', async (request, response) => {
     id: tool.id,
     tags: tool.tags.split(','),
     user_id: tool.user_id,
+    user: tool.user.email,
   }));
 
   return response.json(toolsTagConvertedArray);

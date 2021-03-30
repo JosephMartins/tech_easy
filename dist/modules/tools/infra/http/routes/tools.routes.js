@@ -18,14 +18,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const toolsRouter = (0, _express.Router)();
 toolsRouter.get('/', async (request, response) => {
   const toolsRepository = (0, _typeorm.getCustomRepository)(_ToolsRepository.default);
-  const tools = await toolsRepository.find();
+  const tools = await toolsRepository.find({
+    relations: ['user']
+  });
   const toolsTagConvertedArray = tools.map(tool => ({
     title: tool.title,
     link: tool.link,
     description: tool.description,
     id: tool.id,
     tags: tool.tags.split(','),
-    user_id: tool.user_id
+    user_id: tool.user_id,
+    user: tool.user.email
   }));
   return response.json(toolsTagConvertedArray);
 });
