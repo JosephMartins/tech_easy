@@ -3,11 +3,10 @@ import { getCustomRepository, Like } from 'typeorm';
 
 import ToolsRepository from '@modules/tools/repositories/ToolsRepository';
 import CreateToolsService from '@modules/tools/services/CreateToolsService';
-import ensureAuthenticated from '@modules/users/middlewares/ensureAuthenticated';
 
 const toolsRouter = Router();
 
-toolsRouter.get('/', ensureAuthenticated, async (request, response) => {
+toolsRouter.get('/', async (request, response) => {
   const toolsRepository = getCustomRepository(ToolsRepository);
 
   const tools = await toolsRepository.find({ relations: ['user'] });
