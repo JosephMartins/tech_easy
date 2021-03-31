@@ -3,10 +3,11 @@ import { getCustomRepository, Like } from 'typeorm';
 
 import ToolsRepository from '@modules/tools/repositories/ToolsRepository';
 import CreateToolsService from '@modules/tools/services/CreateToolsService';
+import ensureAuthenticated from '@modules/users/middlewares/ensureAuthenticated';
 
 const toolsRouter = Router();
 
-toolsRouter.get('/', async (request, response) => {
+toolsRouter.get('/', ensureAuthenticated, async (request, response) => {
   const toolsRepository = getCustomRepository(ToolsRepository);
 
   const tools = await toolsRepository.find({ relations: ['user'] });
@@ -39,7 +40,7 @@ toolsRouter.post('/', async (request, response) => {
   return response.json(tool);
 });
 
-toolsRouter.get('/tools', async (request, response) => {
+toolsRouter.get('/tool', async (request, response) => {
   const { tag } = request.query;
 
   const toolsRepository = getCustomRepository(ToolsRepository);
